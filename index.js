@@ -1,0 +1,72 @@
+// Here We Are Added Event Listener For all buttons...
+
+var numberofDrumButton=document.querySelectorAll(".drum").length;
+
+for(var i = 0; i < numberofDrumButton; i++){
+
+  document.querySelectorAll("button")[i].addEventListener("click",handleClick);
+
+  function handleClick(){
+
+var buttonInnerHTML=this.innerHTML;
+
+// Here We Detect Wich key is Pressed BY using Mouse..
+makeSound(buttonInnerHTML);
+
+buttonAnimation(buttonInnerHTML);
+  }
+}
+
+// Here We Are added To Detect Which Key Is Pressed By Using Kypres Event Listner..
+document.addEventListener("keypress",function(event){
+  makeSound(event.key);
+  buttonAnimation(event.key);
+
+});
+
+function makeSound(key){
+  // Here Is Switch Case Is Used
+  switch (key) {
+       case "w":
+           var tom1 = new Audio('sounds/tom-1.mp3');
+           tom1.play();
+           break;
+       case "a":
+           var tom2 = new Audio('sounds/tom-2.mp3');
+           tom2.play();
+           break;
+       case "s":
+           var tom3 = new Audio('sounds/tom-3.mp3');
+           tom3.play();
+           break;
+       case "d":
+           var tom4 = new Audio('sounds/tom-4.mp3');
+           tom4.play();
+           break;
+       case "j":
+           var snare = new Audio('sounds/snare.mp3');
+           snare.play();
+           break;
+       case "k":
+           var crash = new Audio('sounds/crash.mp3');
+           crash.play();
+           break;
+       case "l":
+           var kick = new Audio('sounds/kick-bass.mp3');
+           kick.play();
+           break;
+      default: console.log("buttonInnerHTML")
+
+  }
+}
+
+// This Function is Crated For Animate The Buttons
+function buttonAnimation(currentkeypressed){
+
+var activeButton=document.querySelector("."+ currentkeypressed);
+ activeButton.classList.add("pressed");
+
+ setTimeout(function(){
+    activeButton.classList.remove("pressed");
+ },100);
+}
